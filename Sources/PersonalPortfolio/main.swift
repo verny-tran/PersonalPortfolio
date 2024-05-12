@@ -20,7 +20,7 @@ struct PersonalPortfolio: Website {
     
     var language: Language { .english }
     var imagePath: Path? { nil }
-    var favicon: Favicon { Favicon(path: Path("Resources/Asset/favicon.png")) }
+    var favicon: Favicon { Favicon(path: "Asset/favicon.png", type: "image/png") }
 }
 
 // This will generate your website using the built-in Foundation theme:

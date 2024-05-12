@@ -28,6 +28,7 @@ private struct ThemeHTMLFactory<Site: Website>: HTMLFactory {
             .head(for: index, on: context.site),
             .body {
                 Paragraph(index.body)
+                SiteFooter()
                 
 //                SiteHeader(context: context, selectedSelectionID: nil)
 //                Wrapper {

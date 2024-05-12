@@ -16,7 +16,7 @@ struct PersonalPortfolio: Website {
     // Update these properties to configure your website:
     var url = URL(string: "https://verny.com")!
     var name = "Trần T. Dũng"
-    var description = "Verny's personal porfolio."
+    var description = "Presently works as an iOS Engineer at CELEBe Korea Co., Ltd. and as a Research Associate at the School of Computer Science & Engineering, International University (VNU-HCMC). I have over 10 years of both practicing and actual experience developing for iOS and macOS. Since I was in sixth grade and iOS still adhered to the skeuomorphic design language, I have been the award recipient of numerous awards from city to national-level events for competitive sport programming, software and hardware development. I also conduct research in the fields of computer vision, computer graphics, augmented reality, applied artificial intelligence and on-device machine learning utilizing mobile applications and other Apple-oriented platforms. Beside the coding work, I am also a proactive graphic, branding, and motion designer."
     var language: Language { .english }
     var imagePath: Path? { nil }
 }

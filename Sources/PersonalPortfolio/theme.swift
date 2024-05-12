@@ -19,33 +19,36 @@ extension Theme where Site == PersonalPortfolio {
 }
 
 private struct ThemeHTMLFactory<Site: Website>: HTMLFactory {
-    func makeIndexHTML(for index: Index,
-                       context: PublishingContext<Site>) throws -> HTML {
-        HTML(
+    func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
+        var index = index
+        index.title = "Dũng (Verny) Trần"
+        
+        return HTML(
             .lang(context.site.language),
             .head(for: index, on: context.site),
             .body {
-                SiteHeader(context: context, selectedSelectionID: nil)
-                Wrapper {
-                    H1(index.title)
-                    Paragraph(context.site.description)
-                        .class("description")
-                    H2("Latest content")
-                    ItemList(
-                        items: context.allItems(
-                            sortedBy: \.date,
-                            order: .descending
-                        ),
-                        site: context.site
-                    )
-                }
-                SiteFooter()
+                Paragraph(index.body)
+                
+//                SiteHeader(context: context, selectedSelectionID: nil)
+//                Wrapper {
+//                    H1(index.title)
+//                    Paragraph(context.site.description)
+//                        .class("description")
+//                    H2("Latest content")
+//                    ItemList(
+//                        items: context.allItems(
+//                            sortedBy: \.date,
+//                            order: .descending
+//                        ),
+//                        site: context.site
+//                    )
+//                }
+//                SiteFooter()
             }
         )
     }
     
-    func makeSectionHTML(for section: Section<Site>,
-                         context: PublishingContext<Site>) throws -> HTML {
+    func makeSectionHTML(for section: Section<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
             .head(for: section, on: context.site),
@@ -60,8 +63,7 @@ private struct ThemeHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
     
-    func makeItemHTML(for item: Item<Site>,
-                      context: PublishingContext<Site>) throws -> HTML {
+    func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
             .head(for: item, on: context.site),
@@ -82,8 +84,7 @@ private struct ThemeHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
     
-    func makePageHTML(for page: Page,
-                      context: PublishingContext<Site>) throws -> HTML {
+    func makePageHTML(for page: Page, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
@@ -95,8 +96,7 @@ private struct ThemeHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
     
-    func makeTagListHTML(for page: TagListPage,
-                         context: PublishingContext<Site>) throws -> HTML? {
+    func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
@@ -119,8 +119,7 @@ private struct ThemeHTMLFactory<Site: Website>: HTMLFactory {
         )
     }
     
-    func makeTagDetailsHTML(for page: TagDetailsPage,
-                            context: PublishingContext<Site>) throws -> HTML? {
+    func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<Site>) throws -> HTML? {
         HTML(
             .lang(context.site.language),
             .head(for: page, on: context.site),
@@ -198,9 +197,7 @@ private struct ItemList<Site: Website>: Component {
     var body: Component {
         List(items) { item in
             Article {
-                H1(Link(item.title, url: item.path.absoluteString))
-                ItemTagList(item: item, site: site)
-                Paragraph(item.description)
+                Paragraph(item.body)
             }
         }
         .class("item-list")
@@ -223,11 +220,9 @@ private struct SiteFooter: Component {
     var body: Component {
         Footer {
             Paragraph {
-                Text("Generated using ")
+                Text("Built in Swift using ")
                 Link("Publish", url: "https://github.com/johnsundell/publish")
-            }
-            Paragraph {
-                Link("RSS feed", url: "/feed.rss")
+                Text(".")
             }
         }
     }

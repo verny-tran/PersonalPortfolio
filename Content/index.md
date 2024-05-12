@@ -1,1 +1,10 @@
-# A dedicated Apple Developer
+<object 
+    data="Asset/resume.pdf" 
+    type="application/pdf" 
+    width="100%" 
+    height="2000">
+    <a 
+        href="Asset/resume.pdf">
+        resume.pdf
+    </a>
+</object>
